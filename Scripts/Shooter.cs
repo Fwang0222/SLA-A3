@@ -8,9 +8,25 @@ public class Shooter : MonoBehaviour
     public float fireRate = 0.5f;
     public float bulletSpeed = 20f;
     public float range = 20f;
+    [Header("Sound Effects")]
+    public AudioClip shootSound; // 发射音效
+    public AudioSource audioSource; // 音频源组件
 
     private float nextFireTime = 0f;
     private bool isShootingEnabled = true;
+
+    void Start()
+    {
+        // 如果没有指定AudioSource，尝试获取组件
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
+    }
 
     void Update()
     {
@@ -27,6 +43,12 @@ public class Shooter : MonoBehaviour
         {
             Debug.LogError("Bullet preform or firing point not set!");
             return;
+        }
+
+        // 播放发射音效
+        if (shootSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(shootSound);
         }
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
