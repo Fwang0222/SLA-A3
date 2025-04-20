@@ -1,1 +1,2 @@
 # SLA-A3
+# Our project is named "SLA - Sea, Land, Air", and it is a 3D shooting game developed with Unity. The game features three distinct combat environments, each offering unique control and combat mechanics. The player's goal is to gain points by shooting monsters while avoiding losing heart points due to collisions with enemies. When the score reaches 10 points, the game is won. When all heart points are lost, the game will end in failure.
